@@ -8,7 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 
 const postRoutes = require("./routes/PostRoutes");
 
-const commentRoutes = require("./routes/CommentRoute");
+const commentRoutes = require("./routes/CommentRoutes");
 
 const adminRoutes = require("./routes/adminRoutes");
 
