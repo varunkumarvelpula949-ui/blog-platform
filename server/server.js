@@ -5,9 +5,13 @@ const dotenv = require("dotenv");
 
 // Routes
 const authRoutes = require("./routes/authRoutes");
-const postRoutes = require("./routes/postRoutes");
-const commentRoutes = require("./routes/commentRoutes");
+
+const postRoutes = require("./routes/PostRoutes");
+
+const commentRoutes = require("./routes/CommentRoute");
+
 const adminRoutes = require("./routes/adminRoutes");
+
 dotenv.config();
 
 const app = express();
