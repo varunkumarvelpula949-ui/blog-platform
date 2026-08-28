@@ -1,0 +1,324 @@
+/* =========================================================
+   BLOGSPHERE AUTH PAGES
+   ========================================================= */
+
+.auth-page {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(99, 91, 255, 0.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(168, 85, 247, 0.13),
+            transparent 30%
+        ),
+        #f7f8fc;
+}
+
+/* Decorative circles */
+
+.auth-decoration {
+    position: absolute;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(99, 91, 255, 0.1);
+}
+
+.decoration-one {
+    width: 420px;
+    height: 420px;
+
+    top: -230px;
+    left: -180px;
+}
+
+.decoration-two {
+    width: 500px;
+    height: 500px;
+
+    right: -260px;
+    bottom: -280px;
+}
+
+/* Card */
+
+.auth-card {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 450px;
+
+    padding: 42px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid #e7e7ee;
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.09);
+
+    backdrop-filter: blur(15px);
+
+    animation: authAppear 0.5s ease;
+}
+
+@keyframes authAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo */
+
+.auth-logo {
+    display: block;
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+    color: #151515;
+
+    font-size: 29px;
+    font-weight: 900;
+
+    letter-spacing: -1.5px;
+}
+
+.auth-logo span {
+    color: #635bff;
+}
+
+/* Heading */
+
+.auth-heading {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.auth-heading h1 {
+    margin-bottom: 9px;
+
+    font-size: 31px;
+    font-weight: 900;
+
+    letter-spacing: -1px;
+}
+
+.auth-heading p {
+    color: #777;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Form */
+
+.auth-input-group {
+    margin-bottom: 21px;
+}
+
+.auth-input-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #333;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.auth-input-group input {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #ddddE5;
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #fafafd;
+
+    color: #222;
+
+    font-size: 14px;
+
+    transition: 0.25s ease;
+}
+
+.auth-input-group input::placeholder {
+    color: #aaa;
+}
+
+.auth-input-group input:focus {
+    border-color: #635bff;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(99, 91, 255, 0.09);
+}
+
+/* Submit */
+
+.auth-submit {
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #635bff;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 900;
+
+    box-shadow:
+        0 10px 25px rgba(99, 91, 255, 0.2);
+
+    transition: 0.25s ease;
+}
+
+.auth-submit:hover:not(:disabled) {
+    background: #5148df;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(99, 91, 255, 0.28);
+}
+
+.auth-submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Divider */
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 28px 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #eeeeF2;
+}
+
+.auth-divider span {
+    color: #aaa;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+/* Account switch */
+
+.auth-switch {
+    text-align: center;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+.auth-switch a {
+    margin-left: 5px;
+
+    color: #635bff;
+
+    font-weight: 800;
+
+    transition: 0.2s ease;
+}
+
+.auth-switch a:hover {
+    color: #5148df;
+}
+
+/* Back */
+
+.auth-back {
+    display: block;
+
+    margin-top: 25px;
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.auth-back:hover {
+    color: #635bff;
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+    .auth-page {
+        padding: 25px 15px;
+    }
+
+    .auth-card {
+        padding: 30px 23px;
+
+        border-radius: 18px;
+    }
+
+    .auth-logo {
+        font-size: 26px;
+        margin-bottom: 28px;
+    }
+
+    .auth-heading h1 {
+        font-size: 27px;
+    }
+}
