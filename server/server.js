@@ -3,16 +3,14 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
+// Load environment variables FIRST
+dotenv.config();
+
 // Routes
 const authRoutes = require("./routes/authRoutes");
-
 const postRoutes = require("./routes/PostRoutes");
-
 const commentRoutes = require("./routes/commentRoutes");
-
 const adminRoutes = require("./routes/adminRoutes");
-
-dotenv.config();
 
 const app = express();
 
@@ -76,11 +74,7 @@ app.use((err, req, res, next) => {
 });
 
 // ===============================
-// SERVER
+// VERCEL EXPORT
 // ===============================
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+module.exports = app;
