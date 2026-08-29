@@ -11,8 +11,7 @@ const router = express.Router();
 
 router.post("/register", async (req, res) => {
     try {
-        console.log("========== REGISTER REQUEST ==========");
-        console.log("Request body:", req.body);
+        console.log("REGISTER REQUEST:", req.body);
 
         const { name, email, password } = req.body;
 
@@ -24,12 +23,6 @@ router.post("/register", async (req, res) => {
 
         const cleanName = name.trim();
         const cleanEmail = email.trim().toLowerCase();
-
-        if (password.length < 6) {
-            return res.status(400).json({
-                message: "Password must be at least 6 characters"
-            });
-        }
 
         console.log("Checking existing user...");
 
@@ -55,7 +48,7 @@ router.post("/register", async (req, res) => {
             password: hashedPassword
         });
 
-        console.log("User created successfully:", user._id);
+        console.log("USER CREATED:", user._id);
 
         return res.status(201).json({
             message: "Registration successful"
@@ -63,9 +56,7 @@ router.post("/register", async (req, res) => {
 
     } catch (error) {
         console.error("========== REGISTER ERROR ==========");
-        console.error("Error name:", error.name);
-        console.error("Error message:", error.message);
-        console.error("Error stack:", error.stack);
+        console.error(error);
         console.error("====================================");
 
         return res.status(500).json({
@@ -74,7 +65,6 @@ router.post("/register", async (req, res) => {
         });
     }
 });
-
 
 // =========================
 // LOGIN
@@ -90,10 +80,8 @@ router.post("/login", async (req, res) => {
             });
         }
 
-        const cleanEmail = email.trim().toLowerCase();
-
         const user = await User.findOne({
-            email: cleanEmail
+            email: email.trim().toLowerCase()
         });
 
         if (!user) {
@@ -110,6 +98,12 @@ router.post("/login", async (req, res) => {
         if (!passwordMatch) {
             return res.status(401).json({
                 message: "Invalid email or password"
+            });
+        }
+
+        if (!process.env.JWT_SECRET) {
+            return res.status(500).json({
+                message: "JWT_SECRET is missing"
             });
         }
 
@@ -134,11 +128,7 @@ router.post("/login", async (req, res) => {
         });
 
     } catch (error) {
-        console.error("========== LOGIN ERROR ==========");
-        console.error("Error name:", error.name);
-        console.error("Error message:", error.message);
-        console.error("Error stack:", error.stack);
-        console.error("================================");
+        console.error("LOGIN ERROR:", error);
 
         return res.status(500).json({
             message: "Login failed",

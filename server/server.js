@@ -74,7 +74,7 @@ async function connectDB() {
 
 const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/PostRoutes");
-const commentRoutes = require("./routes/commentRoutes");
+const commentRoutes = require("./routes/CommentRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 
 // Connect before database routes
