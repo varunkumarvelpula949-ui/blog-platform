@@ -10,91 +10,155 @@ const app = express();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-const connectDB = async () => {
+let isConnecting = false;
+
+async function connectDB() {
+    // Already connected
     if (mongoose.connection.readyState === 1) {
-        return;
+        return true;
     }
 
-    if (!process.env.MONGO_URI) {
-        throw new Error("MONGO_URI is missing");
+    // Prevent multiple simultaneous connections
+    if (isConnecting) {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        return mongoose.connection.readyState === 1;
     }
 
-    await mongoose.connect(process.env.MONGO_URI, {
-        serverSelectionTimeoutMS: 5000,
-        maxPoolSize: 5
-    });
+    isConnecting = true;
 
-    console.log("MongoDB connected successfully");
-};
+    try {
+        let uri = process.env.MONGO_URI;
+
+        if (!uri) {
+            throw new Error("MONGO_URI environment variable is missing");
+        }
+
+        // Clean accidental spaces/quotes
+        uri = uri.trim().replace(/^["']|["']$/g, "");
+
+        // If accidentally pasted as MONGO_URI=xxxxx, fix it
+        if (uri.startsWith("MONGO_URI=")) {
+            uri = uri.substring("MONGO_URI=".length).trim();
+        }
+
+        // Check MongoDB URI format
+        if (
+            !uri.startsWith("mongodb://") &&
+            !uri.startsWith("mongodb+srv://")
+        ) {
+            throw new Error(
+                "Invalid MONGO_URI. It must start with mongodb:// or mongodb+srv://"
+            );
+        }
+
+        await mongoose.connect(uri, {
+            serverSelectionTimeoutMS: 10000,
+            connectTimeoutMS: 10000,
+            maxPoolSize: 5
+        });
+
+        console.log("MongoDB connected successfully");
+
+        return true;
+    } catch (error) {
+        console.error("MongoDB connection error:", error.message);
+        return false;
+    } finally {
+        isConnecting = false;
+    }
+}
+
+// =========================
+// ROUTES
+// =========================
 
 const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/PostRoutes");
+const commentRoutes = require("./routes/commentRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 
+// Connect before database routes
 app.use("/api/auth", async (req, res, next) => {
-    try {
-        await connectDB();
-        next();
-    } catch (error) {
-        console.error("Database connection failed:", error.message);
+    const connected = await connectDB();
 
+    if (!connected) {
         return res.status(500).json({
-            message: "Database connection failed",
-            error: error.message
+            message: "Database connection failed"
         });
     }
+
+    next();
 }, authRoutes);
 
 app.use("/api/posts", async (req, res, next) => {
-    try {
-        await connectDB();
-        next();
-    } catch (error) {
-        console.error("Database connection failed:", error.message);
+    const connected = await connectDB();
 
+    if (!connected) {
         return res.status(500).json({
-            message: "Database connection failed",
-            error: error.message
+            message: "Database connection failed"
         });
     }
+
+    next();
 }, postRoutes);
 
-app.use("/api/admin", async (req, res, next) => {
-    try {
-        await connectDB();
-        next();
-    } catch (error) {
-        console.error("Database connection failed:", error.message);
+app.use("/api/comments", async (req, res, next) => {
+    const connected = await connectDB();
 
+    if (!connected) {
         return res.status(500).json({
-            message: "Database connection failed",
-            error: error.message
+            message: "Database connection failed"
         });
     }
+
+    next();
+}, commentRoutes);
+
+app.use("/api/admin", async (req, res, next) => {
+    const connected = await connectDB();
+
+    if (!connected) {
+        return res.status(500).json({
+            message: "Database connection failed"
+        });
+    }
+
+    next();
 }, adminRoutes);
 
-app.get("/", async (req, res) => {
+// =========================
+// HOME
+// =========================
+
+app.get("/", (req, res) => {
     res.json({
         message: "Blog Platform API is running successfully"
     });
 });
 
-app.get("/api/health", async (req, res) => {
-    try {
-        await connectDB();
+// =========================
+// HEALTH CHECK
+// =========================
 
-        res.json({
+app.get("/api/health", async (req, res) => {
+    const connected = await connectDB();
+
+    if (connected) {
+        return res.status(200).json({
             status: "OK",
             database: "connected"
         });
-    } catch (error) {
-        res.status(500).json({
-            status: "ERROR",
-            database: "disconnected",
-            error: error.message
-        });
     }
+
+    return res.status(500).json({
+        status: "ERROR",
+        database: "disconnected"
+    });
 });
+
+// =========================
+// LOCAL SERVER
+// =========================
 
 const PORT = process.env.PORT || 5000;
 
