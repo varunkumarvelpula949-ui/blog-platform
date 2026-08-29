@@ -1,6 +1,8 @@
-/* =========================================================
-   BLOGSPHERE - PROFESSIONAL UI
-   ========================================================= */
+/* =========================================
+   BLOGSPHERE - PREMIUM APP DESIGN
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 * {
     margin: 0;
@@ -13,9 +15,9 @@ html {
 }
 
 body {
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    background: #f6f7fb;
-    color: #151515;
+    font-family: "DM Sans", sans-serif;
+    background: #f7f8fc;
+    color: #17172b;
 }
 
 button,
@@ -32,9 +34,15 @@ a {
     text-decoration: none;
 }
 
-/* =========================================================
+.app {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* =========================================
    NAVBAR
-   ========================================================= */
+   ========================================= */
 
 .navbar {
     position: sticky;
@@ -43,6 +51,7 @@ a {
 
     width: 100%;
     height: 76px;
+
     padding: 0 7%;
 
     display: flex;
@@ -51,34 +60,43 @@ a {
 
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
-    border-bottom: 1px solid #e9e9ef;
+    border-bottom: 1px solid rgba(20, 20, 50, 0.07);
+
+    box-shadow: 0 5px 25px rgba(20, 20, 50, 0.04);
 }
 
 .logo {
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: -1.5px;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.7px;
+    color: #17172b;
 }
 
 .logo span {
-    color: #635bff;
+    color: #6658e8;
 }
 
 .navbar nav {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 28px;
 }
 
 .navbar nav a {
     position: relative;
 
-    color: #444;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 600;
 
-    transition: 0.25s ease;
+    color: #55566b;
+
+    transition: 0.3s ease;
+}
+
+.navbar nav a:hover {
+    color: #6658e8;
 }
 
 .navbar nav a:not(.login-btn)::after {
@@ -91,219 +109,278 @@ a {
     width: 0;
     height: 2px;
 
-    background: #635bff;
+    background: #6658e8;
 
-    transition: 0.25s ease;
-}
-
-.navbar nav a:hover {
-    color: #635bff;
+    transition: 0.3s ease;
 }
 
 .navbar nav a:not(.login-btn):hover::after {
     width: 100%;
 }
 
-.login-btn,
+.login-btn {
+    padding: 10px 21px;
+
+    border-radius: 10px;
+
+    color: white !important;
+    background: linear-gradient(135deg, #6658e8, #8c52e8);
+
+    box-shadow: 0 7px 18px rgba(102, 88, 232, 0.25);
+
+    transition: 0.3s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(102, 88, 232, 0.35);
+}
+
 .logout-btn {
     border: none;
 
-    padding: 11px 21px;
+    padding: 10px 19px;
+
     border-radius: 10px;
 
-    background: #635bff;
-    color: white !important;
+    color: #ffffff;
+    background: #17172b;
 
     font-size: 14px;
-    font-weight: 800 !important;
+    font-weight: 600;
 
-    box-shadow: 0 8px 20px rgba(99, 91, 255, 0.22);
-
-    transition: 0.25s ease;
+    transition: 0.3s ease;
 }
 
-.login-btn:hover,
 .logout-btn:hover {
-    background: #5148df;
+    background: #6658e8;
     transform: translateY(-2px);
-    box-shadow: 0 12px 25px rgba(99, 91, 255, 0.3);
 }
 
-/* =========================================================
+
+/* =========================================
    HERO
-   ========================================================= */
+   ========================================= */
 
 .hero {
     position: relative;
-    min-height: 620px;
+
+    min-height: 590px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     text-align: center;
-    padding: 90px 20px;
 
     overflow: hidden;
 
     background:
         radial-gradient(
-            circle at 15% 25%,
-            rgba(99, 91, 255, 0.18),
+            circle at 15% 20%,
+            rgba(255, 255, 255, 0.15),
             transparent 28%
         ),
         radial-gradient(
             circle at 85% 70%,
-            rgba(168, 85, 247, 0.15),
+            rgba(255, 255, 255, 0.12),
             transparent 30%
         ),
-        #ffffff;
+        linear-gradient(
+            135deg,
+            #17172b 0%,
+            #29245b 45%,
+            #6658e8 100%
+        );
 }
 
 .hero::before {
     content: "";
 
     position: absolute;
+
     width: 500px;
     height: 500px;
 
     border-radius: 50%;
-    border: 1px solid rgba(99, 91, 255, 0.08);
 
-    top: -250px;
-    right: -150px;
+    background: rgba(255, 255, 255, 0.05);
+
+    top: -220px;
+    right: -120px;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    bottom: -180px;
+    left: -100px;
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 
-    max-width: 900px;
+    width: 90%;
+    max-width: 850px;
+
+    animation: heroAppear 0.9s ease;
 }
 
 .hero-small {
-    margin-bottom: 24px;
-
-    color: #635bff;
+    margin-bottom: 18px;
 
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 700;
 
     letter-spacing: 4px;
+
+    color: #bcb5ff;
 }
 
 .hero h1 {
-    margin-bottom: 28px;
+    margin-bottom: 22px;
 
-    font-size: clamp(55px, 8vw, 96px);
-    line-height: 0.94;
+    font-family: "Playfair Display", serif;
 
-    letter-spacing: -6px;
-    font-weight: 950;
+    font-size: clamp(48px, 7vw, 82px);
+
+    line-height: 1.05;
+
+    color: #ffffff;
+
+    letter-spacing: -2px;
 }
 
 .hero h1 span {
-    color: #635bff;
+    display: block;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #c8c2ff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-description {
-    max-width: 650px;
+    max-width: 610px;
 
-    margin: auto;
+    margin: 0 auto 35px;
 
-    color: #686868;
+    font-size: 17px;
+    line-height: 1.8;
 
-    font-size: 18px;
-    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .hero-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    margin-top: 38px;
-    padding: 15px 30px;
+    padding: 14px 28px;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
-    background: #151515;
-    color: white;
+    color: #24213f;
+    background: #ffffff;
 
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 700;
 
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
 
     transition: 0.3s ease;
 }
 
 .hero-button:hover {
     transform: translateY(-4px);
-    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.25);
 }
 
-/* =========================================================
-   SECTIONS
-   ========================================================= */
+
+/* =========================================
+   COMMON SECTION
+   ========================================= */
 
 .create-section,
 .posts-section {
-    padding: 100px 7%;
+    width: 88%;
+    max-width: 1180px;
+
+    margin: 0 auto;
 }
 
 .create-section {
-    background: #f6f7fb;
+    padding: 100px 0 80px;
 }
 
 .posts-section {
-    background: #ffffff;
+    padding: 90px 0 110px;
 }
 
 .section-heading {
-    text-align: center;
-    margin-bottom: 55px;
+    margin-bottom: 42px;
 }
 
 .section-heading p {
-    margin-bottom: 12px;
+    margin-bottom: 9px;
 
-    color: #635bff;
+    color: #7569df;
 
     font-size: 11px;
-    font-weight: 900;
+    font-weight: 700;
 
     letter-spacing: 3px;
 }
 
 .section-heading h2 {
-    font-size: 43px;
-    letter-spacing: -2px;
-    font-weight: 900;
+    font-family: "Playfair Display", serif;
+
+    font-size: 42px;
+
+    color: #17172b;
+
+    letter-spacing: -1px;
 }
 
-/* =========================================================
-   CREATE POST FORM
-   ========================================================= */
+
+/* =========================================
+   CREATE POST
+   ========================================= */
 
 .post-form {
-    max-width: 820px;
+    max-width: 850px;
 
-    margin: auto;
-    padding: 42px;
+    padding: 40px;
+
+    border-radius: 22px;
 
     background: #ffffff;
 
-    border: 1px solid #e5e5eb;
-    border-radius: 20px;
+    border: 1px solid rgba(30, 30, 70, 0.06);
 
     box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.06);
+        0 20px 60px rgba(30, 30, 70, 0.08);
 
     transition: 0.3s ease;
 }
 
 .post-form:hover {
     box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.08);
+        0 25px 70px rgba(30, 30, 70, 0.11);
 }
 
 .input-group {
@@ -315,172 +392,177 @@ a {
 
     margin-bottom: 9px;
 
-    color: #333;
+    color: #29293d;
 
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .input-group input,
 .input-group textarea {
     width: 100%;
 
-    padding: 15px;
+    padding: 15px 17px;
 
-    border: 1px solid #ddddE5;
-    border-radius: 11px;
+    border: 1px solid #e1e1eb;
+
+    border-radius: 12px;
 
     outline: none;
 
-    background: #fafafd;
-
-    color: #222;
+    color: #202033;
+    background: #fbfbfd;
 
     font-size: 14px;
 
-    transition: 0.25s ease;
+    transition: 0.3s ease;
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 190px;
+    line-height: 1.7;
 }
 
 .input-group input::placeholder,
 .input-group textarea::placeholder {
-    color: #aaa;
+    color: #aaaabc;
 }
 
 .input-group input:focus,
 .input-group textarea:focus {
-    border-color: #635bff;
+    border-color: #7569df;
 
     background: #ffffff;
 
     box-shadow:
-        0 0 0 4px rgba(99, 91, 255, 0.09);
-}
-
-.input-group textarea {
-    min-height: 190px;
-    resize: vertical;
+        0 0 0 4px rgba(117, 105, 223, 0.10);
 }
 
 .publish-btn {
-    width: 100%;
-
-    padding: 15px;
-
     border: none;
+
+    padding: 14px 28px;
+
     border-radius: 11px;
 
-    background: #635bff;
-    color: white;
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #6658e8,
+        #8952e8
+    );
 
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 700;
 
     box-shadow:
-        0 10px 25px rgba(99, 91, 255, 0.2);
+        0 9px 22px rgba(102, 88, 232, 0.25);
 
-    transition: 0.25s ease;
+    transition: 0.3s ease;
 }
 
 .publish-btn:hover {
-    background: #5148df;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 
     box-shadow:
-        0 15px 30px rgba(99, 91, 255, 0.28);
+        0 14px 30px rgba(102, 88, 232, 0.32);
 }
 
-/* =========================================================
+
+/* =========================================
    LOGIN MESSAGE
-   ========================================================= */
+   ========================================= */
 
 .login-message {
-    max-width: 600px;
+    max-width: 650px;
 
-    margin: auto;
-    padding: 50px 40px;
+    padding: 40px;
 
-    text-align: center;
+    border-radius: 20px;
 
     background: #ffffff;
 
-    border: 1px solid #e7e7ed;
-    border-radius: 20px;
+    border: 1px solid #ececf4;
 
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 15px 45px rgba(30, 30, 70, 0.06);
+
+    text-align: center;
 }
 
 .login-message h3 {
     margin-bottom: 10px;
 
-    font-size: 26px;
+    font-family: "Playfair Display", serif;
+
+    font-size: 25px;
 }
 
 .login-message p {
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 
-    color: #707070;
-
-    line-height: 1.6;
+    color: #77778b;
 }
 
 .login-message a {
     display: inline-block;
 
-    padding: 12px 25px;
+    padding: 11px 22px;
 
     border-radius: 10px;
 
-    background: #635bff;
-    color: white;
+    color: #ffffff;
 
-    font-weight: 800;
+    background: #6658e8;
 
-    transition: 0.25s ease;
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: 0.3s ease;
 }
 
 .login-message a:hover {
-    background: #5148df;
     transform: translateY(-2px);
 }
 
-/* =========================================================
+
+/* =========================================
    POSTS
-   ========================================================= */
+   ========================================= */
+
+.posts-section {
+    position: relative;
+}
 
 .posts-grid {
-    max-width: 1250px;
-
-    margin: auto;
-
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(auto-fit, minmax(330px, 1fr));
 
-    gap: 26px;
+    gap: 28px;
 }
 
 .post-card {
     position: relative;
 
-    min-height: 300px;
-
-    display: flex;
-    flex-direction: column;
-
     padding: 30px;
+
+    border-radius: 20px;
 
     background: #ffffff;
 
-    border: 1px solid #e7e7ed;
-    border-radius: 19px;
+    border: 1px solid rgba(30, 30, 70, 0.06);
+
+    box-shadow:
+        0 12px 40px rgba(30, 30, 70, 0.065);
 
     overflow: hidden;
 
     transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease;
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
 .post-card::before {
@@ -492,23 +574,25 @@ a {
     left: 0;
 
     width: 100%;
-    height: 3px;
+    height: 4px;
 
-    background: #635bff;
+    background: linear-gradient(
+        90deg,
+        #6658e8,
+        #a45be8
+    );
 
     transform: scaleX(0);
     transform-origin: left;
 
-    transition: 0.3s ease;
+    transition: 0.35s ease;
 }
 
 .post-card:hover {
     transform: translateY(-7px);
 
-    border-color: #d9d6ff;
-
     box-shadow:
-        0 22px 55px rgba(0, 0, 0, 0.09);
+        0 22px 55px rgba(30, 30, 70, 0.11);
 }
 
 .post-card:hover::before {
@@ -516,59 +600,65 @@ a {
 }
 
 .post-number {
-    margin-bottom: 18px;
+    display: inline-block;
 
-    color: #635bff;
+    margin-bottom: 15px;
+
+    padding: 6px 10px;
+
+    border-radius: 7px;
+
+    color: #6658e8;
+
+    background: #f0efff;
 
     font-size: 10px;
-    font-weight: 900;
+    font-weight: 800;
 
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 .post-card h3 {
     margin-bottom: 15px;
 
-    font-size: 24px;
-    line-height: 1.2;
+    font-family: "Playfair Display", serif;
 
-    letter-spacing: -0.5px;
+    font-size: 25px;
+    line-height: 1.3;
+
+    color: #1b1b30;
 }
 
 .post-content {
-    flex: 1;
+    min-height: 80px;
 
-    color: #666;
+    margin-bottom: 25px;
+
+    color: #717184;
 
     font-size: 14px;
-    line-height: 1.75;
+    line-height: 1.8;
 
     white-space: pre-wrap;
+
+    overflow-wrap: break-word;
 }
 
 .post-footer {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
-    gap: 10px;
-
-    margin-top: 25px;
     padding-top: 18px;
 
-    border-top: 1px solid #eeeeF2;
-}
+    border-top: 1px solid #eeeeF4;
 
-.post-footer > span {
-    color: #777;
+    color: #55556a;
 
     font-size: 12px;
     font-weight: 700;
 }
-
-/* =========================================================
-   POST ACTIONS
-   ========================================================= */
 
 .post-actions {
     display: flex;
@@ -576,396 +666,464 @@ a {
 }
 
 .edit-btn,
-.delete-btn,
-.save-btn,
-.cancel-btn {
+.delete-btn {
     border: none;
 
-    padding: 8px 12px;
+    padding: 7px 11px;
 
-    border-radius: 8px;
+    border-radius: 7px;
 
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 700;
 
-    transition: 0.2s ease;
+    transition: 0.25s ease;
 }
 
 .edit-btn {
-    background: #eeeeff;
-    color: #5148df;
+    color: #6658e8;
+    background: #f0efff;
 }
 
-.delete-btn {
-    background: #fff0f0;
-    color: #dc2626;
-}
-
-.save-btn {
-    background: #635bff;
+.edit-btn:hover {
+    background: #6658e8;
     color: white;
 }
 
-.cancel-btn {
-    background: #eeeeee;
-    color: #444;
+.delete-btn {
+    color: #e45151;
+    background: #fff0f0;
 }
 
-.edit-btn:hover,
-.delete-btn:hover,
-.save-btn:hover,
-.cancel-btn:hover {
-    transform: translateY(-2px);
+.delete-btn:hover {
+    background: #e45151;
+    color: white;
 }
 
-/* =========================================================
+
+/* =========================================
    EDIT FORM
-   ========================================================= */
-
-.edit-form {
-    width: 100%;
-}
+   ========================================= */
 
 .edit-form input,
 .edit-form textarea {
     width: 100%;
 
-    margin-bottom: 12px;
-    padding: 12px;
+    padding: 13px 14px;
 
-    border: 1px solid #ddddE5;
-    border-radius: 9px;
+    margin-bottom: 14px;
+
+    border: 1px solid #dddde8;
+
+    border-radius: 10px;
 
     outline: none;
 
+    background: #fafafd;
+
     font-size: 14px;
 
-    transition: 0.2s ease;
+    transition: 0.3s ease;
+}
+
+.edit-form textarea {
+    min-height: 170px;
+    resize: vertical;
+    line-height: 1.6;
 }
 
 .edit-form input:focus,
 .edit-form textarea:focus {
-    border-color: #635bff;
+    border-color: #6658e8;
+
+    background: white;
 
     box-shadow:
-        0 0 0 3px rgba(99, 91, 255, 0.08);
-}
-
-.edit-form textarea {
-    resize: vertical;
+        0 0 0 3px rgba(102, 88, 232, 0.1);
 }
 
 .edit-buttons {
     display: flex;
-    gap: 8px;
+    gap: 9px;
 }
 
-/* =========================================================
+.save-btn,
+.cancel-btn {
+    border: none;
+
+    padding: 10px 17px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: 0.25s ease;
+}
+
+.save-btn {
+    color: white;
+    background: #6658e8;
+}
+
+.save-btn:hover {
+    background: #5144cf;
+}
+
+.cancel-btn {
+    color: #55556a;
+    background: #eeeeF4;
+}
+
+.cancel-btn:hover {
+    background: #dedee8;
+}
+
+
+/* =========================================
    COMMENTS
-   ========================================================= */
+   ========================================= */
 
 .comments-section {
     margin-top: 25px;
-    padding-top: 20px;
 
-    border-top: 1px solid #eeeeF2;
+    padding-top: 22px;
+
+    border-top: 1px solid #eeeeF4;
 }
 
 .comments-section h4 {
-    margin-bottom: 15px;
+    margin-bottom: 14px;
 
-    font-size: 16px;
+    color: #29293d;
+
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .comment-list {
-    display: flex;
-    flex-direction: column;
+    max-height: 220px;
 
-    gap: 10px;
+    overflow-y: auto;
 
-    margin-bottom: 15px;
+    padding-right: 4px;
+}
+
+.comment-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.comment-list::-webkit-scrollbar-thumb {
+    background: #d3d1ea;
+    border-radius: 10px;
 }
 
 .comment {
     display: flex;
+
     align-items: flex-start;
     justify-content: space-between;
 
     gap: 10px;
 
-    padding: 13px;
+    margin-bottom: 9px;
 
-    background: #f7f8fc;
+    padding: 12px;
 
-    border: 1px solid #eeeeF3;
     border-radius: 10px;
 
-    transition: 0.2s ease;
-}
+    background: #f8f8fc;
 
-.comment:hover {
-    background: #f2f2fa;
+    border: 1px solid #eeeeF4;
 }
 
 .comment strong {
-    display: block;
-
-    margin-bottom: 4px;
+    color: #6658e8;
 
     font-size: 12px;
 }
 
 .comment p {
-    margin: 0;
+    margin-top: 4px;
 
-    color: #666;
+    color: #69697d;
 
     font-size: 12px;
-    line-height: 1.55;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
 }
 
 .comment-delete {
+    flex-shrink: 0;
+
     border: none;
 
-    background: transparent;
-    color: #dc2626;
+    padding: 5px 7px;
+
+    border-radius: 6px;
+
+    color: #e45151;
+    background: #fff0f0;
 
     font-size: 10px;
-    font-weight: 800;
+    font-weight: 700;
 
-    transition: 0.2s ease;
+    transition: 0.25s ease;
 }
 
 .comment-delete:hover {
-    text-decoration: underline;
+    color: white;
+    background: #e45151;
 }
 
 .comment-form {
     display: flex;
+
     gap: 8px;
+
+    margin-top: 14px;
 }
 
 .comment-form input {
     flex: 1;
+
     min-width: 0;
 
-    padding: 11px;
+    padding: 10px 12px;
 
-    border: 1px solid #ddddE5;
+    border: 1px solid #dedee8;
+
     border-radius: 9px;
 
     outline: none;
 
+    background: #ffffff;
+
     font-size: 12px;
 
-    transition: 0.2s ease;
+    transition: 0.3s ease;
 }
 
 .comment-form input:focus {
-    border-color: #635bff;
+    border-color: #6658e8;
 
     box-shadow:
-        0 0 0 3px rgba(99, 91, 255, 0.07);
+        0 0 0 3px rgba(102, 88, 232, 0.08);
 }
 
 .comment-form button {
     border: none;
 
-    padding: 10px 15px;
+    padding: 10px 14px;
 
     border-radius: 9px;
 
-    background: #635bff;
     color: white;
 
-    font-size: 11px;
-    font-weight: 800;
+    background: #6658e8;
 
-    transition: 0.2s ease;
+    font-size: 11px;
+    font-weight: 700;
+
+    transition: 0.25s ease;
 }
 
 .comment-form button:hover {
-    background: #5148df;
+    background: #5144cf;
+
     transform: translateY(-1px);
 }
 
 .no-comments,
 .login-comment {
-    color: #999;
+    color: #a0a0b0;
 
     font-size: 11px;
 }
 
-.no-comments {
-    margin-bottom: 15px;
-}
 
-.login-comment {
-    margin-top: 10px;
-}
-
-/* =========================================================
+/* =========================================
    STATES
-   ========================================================= */
+   ========================================= */
 
 .loading,
 .error-message,
 .empty-posts {
-    max-width: 700px;
+    padding: 45px 25px;
 
-    margin: auto;
-    padding: 30px;
+    border-radius: 18px;
 
     text-align: center;
 
-    border-radius: 14px;
+    background: #ffffff;
+
+    border: 1px solid #eeeeF4;
 }
 
 .loading {
-    color: #635bff;
-    font-weight: 700;
+    color: #6658e8;
+
+    font-weight: 600;
 }
 
 .error-message {
-    background: #fff0f0;
+    color: #d94c4c;
 
-    color: #dc2626;
-
-    border: 1px solid #ffd5d5;
-}
-
-.empty-posts {
-    background: #f7f8fc;
-
-    border: 1px dashed #d8d8df;
+    background: #fff5f5;
 }
 
 .empty-posts h3 {
     margin-bottom: 8px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 25px;
 }
 
 .empty-posts p {
-    color: #777;
+    color: #88889a;
 }
 
-/* =========================================================
+
+/* =========================================
    FOOTER
-   ========================================================= */
+   ========================================= */
 
 .footer {
-    padding: 75px 8% 35px;
+    padding: 60px 20px;
 
     text-align: center;
 
-    background: #111111;
-    color: white;
+    background: #141425;
+
+    color: #9999ac;
 }
 
 .footer-logo {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 
-    font-size: 29px;
-    font-weight: 900;
-    letter-spacing: -1px;
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .footer-logo span {
-    color: #8b84ff;
+    color: #8275f0;
 }
 
 .footer p {
-    margin-bottom: 10px;
-
-    color: #aaa;
-
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .footer .copyright {
-    margin-top: 30px;
+    margin-top: 22px;
 
-    color: #666;
+    color: #65657b;
 
     font-size: 11px;
 }
 
-/* =========================================================
-   RESPONSIVE - TABLET
-   ========================================================= */
 
-@media (max-width: 1000px) {
+/* =========================================
+   ANIMATION
+   ========================================= */
+
+@keyframes heroAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
 
     .navbar {
         padding: 0 5%;
     }
 
+    .navbar nav {
+        gap: 16px;
+    }
+
     .create-section,
     .posts-section {
-        padding-left: 5%;
-        padding-right: 5%;
+        width: 90%;
     }
 
     .posts-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(auto-fit, minmax(290px, 1fr));
     }
 }
 
-/* =========================================================
-   RESPONSIVE - MOBILE
-   ========================================================= */
 
-@media (max-width: 700px) {
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 650px) {
 
     .navbar {
         height: auto;
-        min-height: 70px;
 
-        padding: 15px 5%;
+        padding: 16px 5%;
 
         flex-direction: column;
 
-        gap: 15px;
+        gap: 14px;
     }
 
     .navbar nav {
-        gap: 16px;
+        width: 100%;
+
+        justify-content: center;
 
         flex-wrap: wrap;
-        justify-content: center;
-    }
 
-    .navbar nav a {
-        font-size: 12px;
+        gap: 13px;
     }
 
     .hero {
-        min-height: 530px;
-
-        padding: 70px 20px;
+        min-height: 520px;
     }
 
     .hero h1 {
-        font-size: 55px;
+        font-size: 48px;
 
-        letter-spacing: -4px;
+        letter-spacing: -1px;
     }
 
     .hero-description {
-        font-size: 16px;
+        font-size: 15px;
+    }
+
+    .create-section {
+        padding: 70px 0 60px;
+    }
+
+    .posts-section {
+        padding: 60px 0 80px;
     }
 
     .section-heading h2 {
         font-size: 34px;
     }
 
-    .create-section,
-    .posts-section {
-        padding-top: 75px;
-        padding-bottom: 75px;
-    }
-
     .post-form {
-        padding: 27px;
+        padding: 25px;
+
+        border-radius: 17px;
     }
 
     .posts-grid {
@@ -973,59 +1131,51 @@ a {
     }
 
     .post-card {
-        min-height: 270px;
+        padding: 24px;
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media (max-width: 420px) {
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .navbar nav {
+        gap: 9px;
+    }
+
+    .navbar nav a,
+    .logout-btn {
+        font-size: 12px;
+    }
+
+    .login-btn,
+    .logout-btn {
+        padding: 8px 13px;
+    }
+
+    .hero h1 {
+        font-size: 39px;
+    }
+
+    .hero-small {
+        font-size: 9px;
+
+        letter-spacing: 2.5px;
     }
 
     .post-footer {
         align-items: flex-start;
 
+        gap: 10px;
+
         flex-direction: column;
-    }
-
-    .post-actions {
-        width: 100%;
-    }
-
-    .edit-btn,
-    .delete-btn {
-        flex: 1;
-    }
-}
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 500px) {
-
-    .logo {
-        font-size: 24px;
-    }
-
-    .navbar nav {
-        gap: 11px;
-    }
-
-    .login-btn,
-    .logout-btn {
-        padding: 9px 15px;
-    }
-
-    .hero h1 {
-        font-size: 46px;
-    }
-
-    .hero-small {
-        font-size: 10px;
-        letter-spacing: 2.5px;
-    }
-
-    .section-heading h2 {
-        font-size: 30px;
-    }
-
-    .post-form {
-        padding: 22px;
     }
 
     .comment-form {
