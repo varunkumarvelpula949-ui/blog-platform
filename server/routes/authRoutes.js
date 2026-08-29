@@ -11,6 +11,9 @@ const router = express.Router();
 
 router.post("/register", async (req, res) => {
     try {
+        console.log("========== REGISTER REQUEST ==========");
+        console.log("Request body:", req.body);
+
         const { name, email, password } = req.body;
 
         if (!name || !email || !password) {
@@ -19,8 +22,19 @@ router.post("/register", async (req, res) => {
             });
         }
 
+        const cleanName = name.trim();
+        const cleanEmail = email.trim().toLowerCase();
+
+        if (password.length < 6) {
+            return res.status(400).json({
+                message: "Password must be at least 6 characters"
+            });
+        }
+
+        console.log("Checking existing user...");
+
         const existingUser = await User.findOne({
-            email: email.toLowerCase()
+            email: cleanEmail
         });
 
         if (existingUser) {
@@ -29,30 +43,38 @@ router.post("/register", async (req, res) => {
             });
         }
 
-        const hashedPassword = await bcrypt.hash(
-            password,
-            10
-        );
+        console.log("Hashing password...");
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        console.log("Creating user...");
 
         const user = await User.create({
-            name,
-            email: email.toLowerCase(),
+            name: cleanName,
+            email: cleanEmail,
             password: hashedPassword
         });
 
-        res.status(201).json({
+        console.log("User created successfully:", user._id);
+
+        return res.status(201).json({
             message: "Registration successful"
         });
 
     } catch (error) {
-        console.error("Register error:", error);
+        console.error("========== REGISTER ERROR ==========");
+        console.error("Error name:", error.name);
+        console.error("Error message:", error.message);
+        console.error("Error stack:", error.stack);
+        console.error("====================================");
 
-        res.status(500).json({
+        return res.status(500).json({
             message: "Registration failed",
             error: error.message
         });
     }
 });
+
 
 // =========================
 // LOGIN
@@ -68,8 +90,10 @@ router.post("/login", async (req, res) => {
             });
         }
 
+        const cleanEmail = email.trim().toLowerCase();
+
         const user = await User.findOne({
-            email: email.toLowerCase()
+            email: cleanEmail
         });
 
         if (!user) {
@@ -99,7 +123,7 @@ router.post("/login", async (req, res) => {
             }
         );
 
-        res.status(200).json({
+        return res.status(200).json({
             message: "Login successful",
             token,
             user: {
@@ -110,9 +134,13 @@ router.post("/login", async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Login error:", error);
+        console.error("========== LOGIN ERROR ==========");
+        console.error("Error name:", error.name);
+        console.error("Error message:", error.message);
+        console.error("Error stack:", error.stack);
+        console.error("================================");
 
-        res.status(500).json({
+        return res.status(500).json({
             message: "Login failed",
             error: error.message
         });
